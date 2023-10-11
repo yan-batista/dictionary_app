@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400;700&family=Lora:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+  :root {
+    --color-bg: 0deg 0% 2%;
+    --color-accent1: 274deg 82% 60%;
+    --color-accent2: 274deg 50% 16%;
+    --color-search_bar: 0deg 0% 12%;
+    --color-text_gray: 0deg 0% 46%;
+    --color-text: 0deg 0% 100%;
+    --color-divider: 0deg 0% 91%;
+  }
+  body {
+    @apply bg-bg;
+  }
+}
