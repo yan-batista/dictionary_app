@@ -29,19 +29,3 @@
     @apply bg-bg;
   }
 }
-
-.list-disc {
-  list-style: none;
-  padding-left: 2em;
-}
-
-.list-disc::before {
-  content: "•";
-  color: hsl(274deg 82% 60%);
-  display: inline-block;
-  width: 2em;
-  position: absolute;
-  margin-left: -1.2em;
-  margin-top: -0.35em;
-  font-size: 2em;
-}

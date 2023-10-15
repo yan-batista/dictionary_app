@@ -24,13 +24,14 @@ interface DataType {
 }
 
 function App() {
-  const [font, setFont] = useState("inconsolata");
+  const [font, setFont] = useState("inter");
   const [data, setData] = useState<DataType | null | undefined>(null);
 
   async function fetchData(word: string) {
     try {
       const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
       setData(response.data[0]);
+      window.scrollTo(0, 0);
     } catch (error) {
       setData(undefined);
     }
@@ -80,16 +81,16 @@ function App() {
 
   return (
     <div className={`text-text-normal max-w-screen-[100%] p-6 ${fontVariants[font as keyof typeof fontVariants]}`}>
-      <Header changeFont={changeFont} clearData={clearData} />
+      <Header changeFont={changeFont} clearData={clearData} font={font} />
       <form
         className="bg-search_bar rounded-2xl flex flex-row items-center justify-start mt-6 relative"
         onSubmit={onFormSubmit}
+        autoComplete="off"
       >
         <input
           type="text"
           placeholder="Search for any word..."
           id="word_search"
-          autoComplete="false"
           name="q"
           className="bg-transparent w-full outline-none caret-accent-1 placeholder:text-text-gray rounded-2xl border border-bg focus:border-accent-1 px-6 py-4"
         ></input>
@@ -108,7 +109,7 @@ function App() {
         </button>
       </form>
 
-      {!data && (
+      {data === null && (
         <div className="flex flex-col justify-center items-center gap-6 mt-[5rem]">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 38" className="w-8 h-8 stroke-text-gray">
             <g fill="none" fillRule="evenodd" strokeLinecap="round" strokeWidth="1.5">
@@ -119,6 +120,33 @@ function App() {
           </svg>
           <h1 className="text-lg font-bold">Welcome to Dictionary App</h1>
           <p>Start searching for any word...</p>
+        </div>
+      )}
+
+      {data === undefined && (
+        <div className="flex flex-col justify-center gap-6 items-center text-center w-full p-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#a445ed"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-12 h-12 mt-[5rem] mb-[1.5rem]"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M16 16s-1.5-2-4-2-4 2-4 2"></path>
+            <line x1="9" x2="9.01" y1="9" y2="9"></line>
+            <line x1="15" x2="15.01" y1="9" y2="9"></line>
+          </svg>
+          <p className="font-bold">No Definitions Found</p>
+          <p className="leading-4">
+            Sorry pal, we couldn't find definitions for the word you were looking for.You can try the search again at
+            later time or head to the web instead.
+          </p>
         </div>
       )}
 
@@ -156,10 +184,10 @@ function App() {
                 </div>
 
                 <p className="text-text-gray">Meaning</p>
-                <ul>
+                <ul className="list-disc list-outside ml-[1.3rem]">
                   {meaning.definitions.map((definition, index) => {
                     return (
-                      <li className="list-disc" key={`definition-${index}`}>
+                      <li className="" key={`definition-${index}`}>
                         {definition.definition}
                         <span className="block text-sm text-text-gray py-3">{definition.example}</span>
                       </li>

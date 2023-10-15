@@ -4,9 +4,10 @@ import ThemeSelector from "./ThemeSelector";
 interface HeaderProps {
   changeFont: (event: React.MouseEvent<HTMLParagraphElement>) => void;
   clearData: () => void;
+  font: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ changeFont, clearData }: HeaderProps) => {
+const Header: React.FC<HeaderProps> = ({ changeFont, clearData, font }: HeaderProps) => {
   return (
     <header className="max-w-full flex flex-row items-center justify-between">
       <svg
@@ -22,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ changeFont, clearData }: HeaderProps) =
         </g>
       </svg>
       <div className="flex flex-row justify-center items-center">
-        <FontSelector changeFont={changeFont} />
+        <FontSelector font={font} changeFont={changeFont} />
         <ThemeSelector />
       </div>
     </header>

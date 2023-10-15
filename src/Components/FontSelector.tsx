@@ -1,20 +1,29 @@
 import { useState } from "react";
 
 interface FontSelectorProps {
+  font: string;
   changeFont: (event: React.MouseEvent<HTMLParagraphElement>) => void;
 }
 
-const FontSelector: React.FC<FontSelectorProps> = ({ changeFont }: FontSelectorProps) => {
+const FontSelector: React.FC<FontSelectorProps> = ({ font, changeFont }: FontSelectorProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   function OpenCloseFontSelector() {
     setIsOpen((prevState) => !prevState);
   }
 
+  const fontNames = {
+    inter: "Sans Serif",
+    lora: "Serif",
+    inconsolata: "Mono",
+  };
+
   return (
-    <div className="text-sm font-bold relative">
+    <div className="text-sm font-bold relative cursor-pointer">
       <div className="flex flex-row items-center gap-4" onClick={OpenCloseFontSelector}>
-        <p id="font-name-placeholder">Mono</p>
+        <p id="font-name-placeholder" className="select-none">
+          {fontNames[font as keyof typeof fontNames]}
+        </p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -36,15 +45,23 @@ const FontSelector: React.FC<FontSelectorProps> = ({ changeFont }: FontSelectorP
         >
           <div onClick={changeFont} className="font-inter">
             <input type="radio" className="hidden" name="font" value="inter" defaultChecked={true} />
-            <label className="font-inter">Sans Serif</label>
+            <label className={`cursor-pointer select-none font-inter ${font === "inter" ? "text-accent-1" : ""}`}>
+              Sans Serif
+            </label>
           </div>
           <div onClick={changeFont} className="font-inter">
             <input type="radio" className="hidden" name="font" value="lora" defaultChecked={false} />
-            <label className="font-lora">Serif</label>
+            <label className={`cursor-pointer select-none font-lora ${font === "lora" ? "text-accent-1" : ""}`}>
+              Serif
+            </label>
           </div>
           <div onClick={changeFont} className="font-inter">
             <input type="radio" className="hidden" name="font" value="inconsolata" defaultChecked={false} />
-            <label className="font-inconsolata">Mono</label>
+            <label
+              className={`cursor-pointer select-none font-inconsolata ${font === "inconsolata" ? "text-accent-1" : ""}`}
+            >
+              Mono
+            </label>
           </div>
         </div>
       )}
