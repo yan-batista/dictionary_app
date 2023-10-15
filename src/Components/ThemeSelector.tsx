@@ -5,6 +5,12 @@ const ThemeSelector = () => {
 
   function changeTheme() {
     setIsThemeDark((prevState) => !prevState);
+    const html = document.documentElement;
+    if (html.getAttribute("data-theme") === "light") {
+      html.setAttribute("data-theme", "dark");
+    } else {
+      html.setAttribute("data-theme", "light");
+    }
   }
 
   return (
@@ -25,7 +31,7 @@ const ThemeSelector = () => {
           strokeLinejoin="round"
           strokeWidth="1.5"
           d="M1 10.449a10.544 10.544 0 0 0 19.993 4.686C11.544 15.135 6.858 10.448 6.858 1A10.545 10.545 0 0 0 1 10.449Z"
-          className={`${isThemeDark ? "stroke-accent-1" : "stroke-text-gray"}`}
+          className={`fill-none ${isThemeDark ? "stroke-accent-1" : "stroke-text-gray"}`}
         ></path>
       </svg>
     </div>
