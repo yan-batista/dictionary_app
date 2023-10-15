@@ -21,6 +21,9 @@ module.exports = {
         lora: ["Lora", "serif"],
         inconsolata: ["Inconsolata", "monospace"],
       },
+      boxShadow: {
+        themeSelector: "0px 0px 35px 0px rgba(164, 69, 237, .75)",
+      },
     },
   },
   plugins: [],
