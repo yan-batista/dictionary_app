@@ -3,12 +3,18 @@ import ThemeSelector from "./ThemeSelector";
 
 interface HeaderProps {
   changeFont: (event: React.MouseEvent<HTMLParagraphElement>) => void;
+  clearData: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ changeFont }: HeaderProps) => {
+const Header: React.FC<HeaderProps> = ({ changeFont, clearData }: HeaderProps) => {
   return (
     <header className="max-w-full flex flex-row items-center justify-between">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 38" className="w-8 h-8 stroke-text-gray">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 34 38"
+        className="w-8 h-8 stroke-text-gray"
+        onClick={clearData}
+      >
         <g fill="none" fillRule="evenodd" strokeLinecap="round" strokeWidth="1.5">
           <path d="M1 33V5a4 4 0 0 1 4-4h26.8A1.2 1.2 0 0 1 33 2.2v26.228M5 29h28M5 37h28"></path>
           <path strokeLinejoin="round" d="M5 37a4 4 0 1 1 0-8"></path>

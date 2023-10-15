@@ -14,7 +14,7 @@ const FontSelector: React.FC<FontSelectorProps> = ({ changeFont }: FontSelectorP
   return (
     <div className="text-sm font-bold relative">
       <div className="flex flex-row items-center gap-4" onClick={OpenCloseFontSelector}>
-        <p id="font-name-placeholder">Sans Serif</p>
+        <p id="font-name-placeholder">Mono</p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
