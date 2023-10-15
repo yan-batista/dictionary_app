@@ -1,17 +1,44 @@
+import { useState } from "react";
 import Header from "./Components/Header";
 import "./styles/global.css";
 
 function App() {
+  const [font, setFont] = useState("inter");
+
+  function changeFont(event: React.MouseEvent<HTMLParagraphElement>) {
+    const fontInput = event.currentTarget.querySelector("input");
+    if (fontInput) {
+      fontInput.checked = true;
+      setFont(fontInput.value);
+      updateFontNamePlaceholder(fontInput);
+    }
+  }
+
+  function updateFontNamePlaceholder(fontInput: HTMLInputElement) {
+    const inputLabel = fontInput.nextElementSibling;
+    const fontNamePlaceholder = document.querySelector("#font-name-placeholder");
+
+    if (inputLabel && fontNamePlaceholder) {
+      fontNamePlaceholder.innerHTML = inputLabel.innerHTML;
+    }
+  }
+
+  const fontVariants = {
+    inter: "font-inter",
+    lora: "font-lora",
+    inconsolata: "font-inconsolata",
+  };
+
   return (
-    <div className="text-text-normal font-inte max-w-screen-[100%] p-6">
-      <Header />
+    <div className={`text-text-normal max-w-screen-[100%] p-6 ${fontVariants[font as keyof typeof fontVariants]}`}>
+      <Header changeFont={changeFont} />
       <form className="bg-search_bar rounded-2xl flex flex-row items-center justify-start mt-6 relative">
         <input
           type="text"
           placeholder="Search for any word..."
           id="search"
           name="q"
-          className="bg-transparent w-full outline-none caret-accent-1 placeholder:text-text-gray rounded-2xl focus:border focus:border-accent-1 px-6 py-4"
+          className="bg-transparent w-full outline-none caret-accent-1 placeholder:text-text-gray rounded-2xl border border-bg focus:border-accent-1 px-6 py-4"
         ></input>
         <p className="absolute text-xs text-red-500 top-16 hidden">Whoops, can't be empty...</p>
         <button className="absolute right-4 hover:bg-bg rounded-full flex flex-row justify-center items-center p-2 ml-2">

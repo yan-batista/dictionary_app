@@ -22,7 +22,7 @@ module.exports = {
         inconsolata: ["Inconsolata", "monospace"],
       },
       boxShadow: {
-        themeSelector: "0px 0px 35px 0px rgba(164, 69, 237, .75)",
+        themeSelector: "0px 0px 35px 0px hsl(var(--color-shadow))",
       },
     },
   },

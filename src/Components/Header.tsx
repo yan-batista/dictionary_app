@@ -1,7 +1,11 @@
 import FontSelector from "./FontSelector";
 import ThemeSelector from "./ThemeSelector";
 
-const Header = () => {
+interface HeaderProps {
+  changeFont: (event: React.MouseEvent<HTMLParagraphElement>) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ changeFont }: HeaderProps) => {
   return (
     <header className="max-w-full flex flex-row items-center justify-between">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 38" className="w-8 h-8 stroke-text-gray">
@@ -12,7 +16,7 @@ const Header = () => {
         </g>
       </svg>
       <div className="flex flex-row justify-center items-center">
-        <FontSelector />
+        <FontSelector changeFont={changeFont} />
         <ThemeSelector />
       </div>
     </header>
