@@ -21,7 +21,7 @@ const FontSelector: React.FC<FontSelectorProps> = ({ font, changeFont }: FontSel
   return (
     <div className="text-sm font-bold relative cursor-pointer">
       <div className="flex flex-row items-center gap-4" onClick={OpenCloseFontSelector}>
-        <p id="font-name-placeholder" className="select-none">
+        <p id="font-name-placeholder" className="select-none md:text-lg">
           {fontNames[font as keyof typeof fontNames]}
         </p>
         <svg
@@ -40,7 +40,7 @@ const FontSelector: React.FC<FontSelectorProps> = ({ font, changeFont }: FontSel
 
       {isOpen && (
         <div
-          className="bg-search_bar w-32 rounded-lg p-4 shadow-themeSelector absolute top-10 right-0 flex flex-col gap-2 z-10"
+          className="bg-search_bar w-32 md:w-36 md:text-lg rounded-lg p-4 shadow-themeSelector absolute top-10 right-0 flex flex-col gap-2 z-10"
           id="font-selector-list"
         >
           <div onClick={changeFont} className="font-inter">

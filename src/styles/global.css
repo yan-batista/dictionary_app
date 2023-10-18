@@ -9,6 +9,7 @@
     --color-bg: 0deg 0% 2%;
     --color-accent1: 274deg 82% 60%;
     --color-accent2: 274deg 50% 16%;
+    --color-accent3: 274deg 100% 88%;
     --color-search_bar: 0deg 0% 12%;
     --color-text_gray: 0deg 0% 46%;
     --color-text: 0deg 0% 100%;
@@ -26,6 +27,6 @@
     --color-shadow: 0deg 0% 0% / 30%;
   }
   body {
-    @apply bg-bg;
+    @apply bg-bg selection:bg-accent-3 selection:text-accent-2;
   }
 }

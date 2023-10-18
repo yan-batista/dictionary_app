@@ -8,6 +8,7 @@ module.exports = {
         accent: {
           1: "hsl( var(--color-accent1) / <alpha-value>)",
           2: "hsl( var(--color-accent2) / <alpha-value>)",
+          3: "hsl( var(--color-accent3) / <alpha-value>)",
         },
         search_bar: "hsl( var(--color-search_bar) / <alpha-value>)",
         text: {
