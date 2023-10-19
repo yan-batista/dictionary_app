@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ changeFont, clearData, font }: HeaderPr
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 34 38"
-        className="w-8 h-8 md:w-10 md:h-10 stroke-text-gray"
+        className="w-8 h-8 md:w-10 md:h-10 stroke-text-gray cursor-pointer"
         onClick={clearData}
       >
         <g fill="none" fillRule="evenodd" strokeLinecap="round" strokeWidth="1.5">
