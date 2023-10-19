@@ -85,7 +85,7 @@ function App() {
 
   return (
     <div
-      className={`text-text-normal max-w-screen-[100%] p-6 md:px-9 md:py-12 ${
+      className={`text-text-normal max-w-screen-[100%] p-6 md:px-9 md:py-12 lg:w-[52rem] lg:py-16 ${
         fontVariants[font as keyof typeof fontVariants]
       }`}
     >
@@ -94,6 +94,7 @@ function App() {
         className="bg-search_bar rounded-2xl flex flex-row items-center justify-start mt-6 md:mt-12 relative"
         onSubmit={onFormSubmit}
         autoComplete="off"
+        id="search_word_form"
       >
         <input
           type="text"
@@ -168,13 +169,13 @@ function App() {
               <p className="text-accent-1 text-lg md:text-2xl md:mt-4 font-inter">{data.phonetic}</p>
             </div>
             <button
-              className="bg-accent-2 rounded-full p-4 md:p-6 flex justify-center items-center"
+              className="group bg-accent-2 rounded-full p-4 md:p-6 flex justify-center items-center hover:bg-accent-1 duration-150"
               onClick={() => playWordPronunciation(data.phonetics[data.phonetics.length - 1].audio)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
-                className="w-4 h-4 md:w-6 md:h-6 fill-accent-1"
+                className="w-4 h-4 md:w-6 md:h-6 fill-accent-1 group-hover:fill-white duration-150"
               >
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                 <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
@@ -202,7 +203,7 @@ function App() {
                   {meaning.definitions.map((definition, index) => {
                     return (
                       <li className="md:text-lg" key={`definition-${index}`}>
-                        {definition.definition}
+                        <p className="py-1">{definition.definition}</p>
                         {definition.example && (
                           <span className="block text-sm md:text-lg text-text-gray py-3 md:py-2">
                             {definition.example}
@@ -221,7 +222,7 @@ function App() {
                         return (
                           <a
                             onClick={() => fetchData(synonym)}
-                            className="text-accent-1 font-bold md:text-xl"
+                            className="text-accent-1 font-bold md:text-xl cursor-pointer hover:underline"
                             key={`synonym-${index}`}
                           >
                             {synonym}
@@ -241,7 +242,7 @@ function App() {
                         return (
                           <a
                             onClick={() => fetchData(antonym)}
-                            className="text-accent-1 font-bold md:text-xl"
+                            className="text-accent-1 font-bold md:text-xl cursor-pointer hover:underline"
                             key={`antonym-${index}`}
                           >
                             {antonym}
@@ -262,7 +263,12 @@ function App() {
             <div className="flex flex-col flex-wrap">
               {data.sourceUrls.map((url, index) => {
                 return (
-                  <a className="underline break-all md:text-lg" key={`source-${index}`} href={url} target="_blank">
+                  <a
+                    className="underline break-all md:text-lg hover:text-accent-1 duration-150"
+                    key={`source-${index}`}
+                    href={url}
+                    target="_blank"
+                  >
                     {url}
                     <svg
                       className="ml-1 inline-block h-4 w-4 stroke-white"

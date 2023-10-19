@@ -26,6 +26,7 @@
     --color-divider: 0deg 0% 91%;
     --color-shadow: 0deg 0% 0% / 30%;
   }
+
   body {
     @apply bg-bg selection:bg-accent-3 selection:text-accent-2;
   }

@@ -45,20 +45,30 @@ const FontSelector: React.FC<FontSelectorProps> = ({ font, changeFont }: FontSel
         >
           <div onClick={changeFont} className="font-inter">
             <input type="radio" className="hidden" name="font" value="inter" defaultChecked={true} />
-            <label className={`cursor-pointer select-none font-inter ${font === "inter" ? "text-accent-1" : ""}`}>
+            <label
+              className={`cursor-pointer select-none font-inter hover:text-accent-1 duration-150 ${
+                font === "inter" ? "text-accent-1" : ""
+              }`}
+            >
               Sans Serif
             </label>
           </div>
           <div onClick={changeFont} className="font-inter">
             <input type="radio" className="hidden" name="font" value="lora" defaultChecked={false} />
-            <label className={`cursor-pointer select-none font-lora ${font === "lora" ? "text-accent-1" : ""}`}>
+            <label
+              className={`cursor-pointer select-none font-lora hover:text-accent-1 duration-150 ${
+                font === "lora" ? "text-accent-1" : ""
+              }`}
+            >
               Serif
             </label>
           </div>
           <div onClick={changeFont} className="font-inter">
             <input type="radio" className="hidden" name="font" value="inconsolata" defaultChecked={false} />
             <label
-              className={`cursor-pointer select-none font-inconsolata ${font === "inconsolata" ? "text-accent-1" : ""}`}
+              className={`cursor-pointer select-none font-inconsolata hover:text-accent-1 duration-150 ${
+                font === "inconsolata" ? "text-accent-1" : ""
+              }`}
             >
               Mono
             </label>

@@ -1,7 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ThemeSelector = () => {
-  const [isThemeDark, setIsThemeDark] = useState(true);
+  const [isThemeDark, setIsThemeDark] = useState(getPrefersColorScheme());
+
+  // set the data-theme based on the preferred theme
+  useEffect(() => {
+    const html = document.documentElement;
+    if (!isThemeDark) {
+      html.setAttribute("data-theme", "light");
+    } else {
+      html.setAttribute("data-theme", "dark");
+    }
+  }, [isThemeDark]);
+
+  // get the preferred theme
+  function getPrefersColorScheme() {
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   function changeTheme() {
     setIsThemeDark((prevState) => !prevState);
@@ -14,7 +33,10 @@ const ThemeSelector = () => {
   }
 
   return (
-    <div className="flex flex-row gap-3 items-center border-l border-text-gray ml-4 pl-4" onClick={changeTheme}>
+    <div
+      className="flex flex-row gap-3 items-center border-l border-text-gray ml-4 pl-4 cursor-pointer"
+      onClick={changeTheme}
+    >
       <div>
         <div
           className={`w-10 h-5 rounded-full flex flex-row items-center px-[2px] ${
@@ -23,7 +45,7 @@ const ThemeSelector = () => {
         >
           <div className="w-4 h-4 rounded-full bg-white"></div>
         </div>
-        <input type="checkbox" className="hidden" defaultChecked={isThemeDark} />
+        <input type="checkbox" name="theme" className="hidden" defaultChecked={isThemeDark} />
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
         <path
