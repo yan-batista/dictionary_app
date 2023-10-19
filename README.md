@@ -73,6 +73,73 @@ You can style an element based on the parent style using the `group` keyword on 
 
 Read More: [tailwind docs](https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state)
 
+#### Custom Themes
+
+You can create variables on your default css file for the project that will be used by the tailwindcss colors on `tailwind.config.css`
+
+global.css:
+
+```css
+@layer base {
+  :root {
+    --color-bg: 0deg 0% 2%;
+    --color-accent1: 274deg 82% 60%;
+    --color-accent2: 274deg 50% 16%;
+    --color-accent3: 274deg 100% 88%;
+    --color-search_bar: 0deg 0% 12%;
+    --color-text_gray: 0deg 0% 46%;
+    --color-text: 0deg 0% 100%;
+    --color-divider: 0deg 0% 91%;
+    --color-shadow: 274deg 82% 60% / 75%;
+  }
+  :root[data-theme="light"] {
+    --color-bg: 0deg 100% 100%;
+    --color-accent1: 274deg 82% 60%;
+    --color-accent2: 274deg 81% 90%;
+    --color-search_bar: 0deg 0% 96%;
+    --color-text_gray: 0deg 0% 46%;
+    --color-text: 0deg 0% 18%;
+    --color-divider: 0deg 0% 91%;
+    --color-shadow: 0deg 0% 0% / 30%;
+  }
+}
+```
+
+tailwind.config.js
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.tsx", "./index.html"],
+  theme: {
+    extend: {
+      colors: {
+        bg: "hsl( var(--color-bg) / <alpha-value>)",
+        accent: {
+          1: "hsl( var(--color-accent1) / <alpha-value>)",
+          2: "hsl( var(--color-accent2) / <alpha-value>)",
+          3: "hsl( var(--color-accent3) / <alpha-value>)",
+        },
+        search_bar: "hsl( var(--color-search_bar) / <alpha-value>)",
+        text: {
+          normal: "hsl( var(--color-text) / <alpha-value>)",
+          gray: "hsl( var(--color-text_gray) / <alpha-value>)",
+        },
+        divider: "hsl( var(--color-divider) / <alpha-value>)",
+      },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        lora: ["Lora", "serif"],
+        inconsolata: ["Inconsolata", "monospace"],
+      },
+    },
+  },
+  plugins: [],
+};
+```
+
+This way, whenever you change themes, you'll be changing the variable. Because of that you can use only one class for the color that will work for all your themes.
+
 ## Author
 
 - Frontend Mentor - [@yan-batista](https://www.frontendmentor.io/profile/yan-batista-1326)
